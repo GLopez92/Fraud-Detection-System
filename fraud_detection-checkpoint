@@ -1,0 +1,81 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov 30 00:19:18 2024
+
+@author: GuillermoLopez
+"""
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, roc_auc_score
+from imblearn.over_sampling import SMOTE
+import joblib
+import shap
+
+# Load the dataset
+data = pd.read_csv('creditcard.csv')
+
+# Handle missing values (if any)
+data.fillna(data.median(), inplace=True)
+
+# Visualize the class distribution
+sns.countplot(data['Class'])
+plt.title("Fraud vs Non-Fraud Distribution")
+plt.show()
+
+# Feature scaling
+data['Amount'] = StandardScaler().fit_transform(data[['Amount']])
+
+# Handle imbalanced dataset using SMOTE
+X = data.drop(columns=['Class'])
+y = data['Class']
+smote = SMOTE()
+X_resampled, y_resampled = smote.fit_resample(X, y)
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.2, random_state=42)
+
+# Train a logistic regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Evaluate the model
+y_pred = model.predict(X_test)
+print(classification_report(y_test, y_pred))
+print("AUC-ROC:", roc_auc_score(y_test, model.predict_proba(X_test)[:, 1]))
+
+# Save the model
+joblib.dump(model, 'fraud_model.pkl')
+
+# SHAP interpretation
+explainer = shap.Explainer(model, X_test)
+shap_values = explainer(X_test)
+shap.summary_plot(shap_values, X_test)
+
+# Streamlit app 
+import streamlit as st
+st.title("Fraud Detection System")
+uploaded_file = st.file_uploader("Upload Transaction Data")
+if uploaded_file:
+    data = pd.read_csv(uploaded_file)
+    predictions = model.predict(data)
+    st.write(predictions)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
