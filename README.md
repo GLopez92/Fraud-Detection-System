@@ -99,6 +99,5 @@ Visualizes the impact of features on predictions.
 
 ---
 ![Screenshot 2024-11-30 013803](https://github.com/user-attachments/assets/39083c44-6bfd-48e2-9a6c-201874b3f93b)
-![Screenshot 2024-11-30 013758](https://github.com/user-attachments/assets/45eda43d-e95c-4155-9e54-a9f85b223d80)
-![Screenshot 2024-11-30 013806](https://github.com/user-attachments/assets/0a655c95-a3bc-4dc9-8a5e-dedbb6881e1f)
+
 
