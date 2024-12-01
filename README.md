@@ -58,22 +58,14 @@ To use the Streamlit app:
 #### **Class Distribution**
 Shows the significant imbalance between fraudulent and non-fraudulent transactions.
 
-![Class Distribution](images/class_distribution.png)
-
 #### **Logistic Regression Evaluation**
 Evaluates the performance of Logistic Regression with metrics like precision, recall, and AUC-ROC.
-
-![Logistic Regression Report](images/logistic_regression_report.png)
 
 #### **Random Forest Feature Importances**
 Highlights the most influential features in the dataset.
 
-![Feature Importances](images/feature_importances.png)
-
 #### **SHAP Summary Plot**
 Visualizes the impact of features on predictions.
-
-![SHAP Summary Plot](images/shap_summary_plot.png)
 
 ---
 
