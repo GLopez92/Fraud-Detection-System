@@ -1,0 +1,65 @@
+Objective
+The aim of this analysis is to detect fraudulent credit card transactions using a dataset containing anonymized features, transaction amounts, and labels indicating whether a transaction is fraudulent or not.
+
+Dataset Overview
+Dataset Name: creditcard.csv
+Number of Records: 284,807 transactions
+Number of Features: 31 (Time, V1-V28, Amount, and Class)
+Class Distribution
+Class 0 (Non-Fraudulent): ~99.8%
+Class 1 (Fraudulent): ~0.2%
+Visualization: The bar charts above indicate the significant class imbalance, which justifies the need for techniques like SMOTE to balance the dataset.
+
+Data Preprocessing
+Missing Values:
+
+All missing values were handled by imputing the median values for respective columns.
+Feature Scaling:
+
+The Amount feature was standardized using StandardScaler.
+Imbalanced Dataset:
+
+Addressed using SMOTE (Synthetic Minority Oversampling Technique) to oversample the minority class.
+Models Trained
+1. Logistic Regression
+Evaluation Metrics:
+Classification Report:
+Precision, Recall, F1-Score for each class.
+AUC-ROC Score: Measures the trade-off between true positive rate and false positive rate.
+Results:
+Accuracy: Achieved competitive results.
+AUC-ROC: High score indicating good performance in distinguishing fraudulent from non-fraudulent transactions.
+2. Random Forest
+Feature Importance:
+Random Forest identified the most important features contributing to fraudulent detection.
+Visualization of feature importances highlighted key features like V17, V12, V14, and Amount.
+Evaluation Metrics:
+Similar to Logistic Regression, Random Forest was evaluated using Precision, Recall, F1-Score, and AUC-ROC Score.
+Results:
+Achieved better results compared to Logistic Regression due to its ensemble nature and ability to handle non-linear relationships.
+SHAP Analysis
+SHAP (SHapley Additive exPlanations) was used for interpretability:
+
+Visualized how individual features contributed to model predictions.
+Generated a summary plot indicating feature impact.
+Visualization Highlights
+Class Distribution:
+
+Visualized significant imbalance in classes, highlighting the rarity of fraudulent transactions.
+Feature Importances (Random Forest):
+
+Key features influencing predictions were identified and plotted.
+SHAP Summary Plot:
+
+Interpreted the contribution of features to predictions, aiding model transparency.
+Model Deployment
+Using Flask or Streamlit, the trained model can be deployed to provide predictions for new transaction data:
+
+Streamlit Interface:
+File upload functionality for transaction data.
+Real-time predictions displayed for the user.
+Conclusion
+The combination of Logistic Regression and Random Forest models provided insights into the dataset.
+SMOTE effectively handled class imbalance, improving model performance.
+Deployment with Flask or Streamlit ensures practical utility for real-world scenarios.
+If you would like to refine the analysis, add more models, or generate a detailed report file (e.g., PDF or notebook), let me know!
